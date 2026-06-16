@@ -1,0 +1,7 @@
+# source-only originals (working copies live in assets/)
+Man.jpg
+Woman.jpg
+
+# OS noise
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Петя — Король Цветов · Империя цветов</title>
+<meta name="description" content="Праздничное поздравление для Пети — Короля Цветов. Империя цветов, дождь из денег, Азия и тёплые слова в день рождения.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant:ital,wght@0,400;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  :root{
+    --emerald:#0f5132;
+    --emerald-bright:#10b981;
+    --gold:#e8c36a;
+    --gold-soft:#f5d77a;
+    --cream:#faf6ec;
+    --pink:#ff5d8f;
+    --bg:#07140d;
+    --bg-2:#0a1c12;
+    --ink:#0c1f14;
+    --shadow:rgba(2,8,5,.55);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{
+    overflow-x:hidden;
+    max-width:100%;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    scroll-behavior:smooth;
+  }
+  body{ position:relative; width:100%; }
+
+  img{ display:block; max-width:100%; }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--pink); color:#fff; }
+
+  :focus-visible{
+    outline:3px solid var(--gold-soft);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ===== Layout ===== */
+  .section{
+    position:relative;
+    min-height:100svh;
+    width:100%;
+    max-width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:clamp(2.4rem,7vw,5.5rem) clamp(1.1rem,5vw,3rem);
+    overflow:hidden;
+  }
+
+  .wrap{
+    position:relative;
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    z-index:3;
+  }
+
+  canvas.fx{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .eyebrow{
+    font-family:'Cinzel',serif;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    font-size:clamp(.62rem,2.6vw,.82rem);
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:clamp(.8rem,2.5vw,1.3rem);
+  }
+
+  h1,h2,h3{ line-height:1.04; font-weight:700; }
+
+  .gold-text{
+    background:linear-gradient(135deg,#fff4d2 0%,var(--gold) 38%,#bd8e2f 60%,var(--gold-soft) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .lead{
+    font-family:'Cormorant',serif;
+    font-size:clamp(1.15rem,4.4vw,1.7rem);
+    line-height:1.5;
+    color:#e9e3d2;
+    max-width:44ch;
+  }
+
+  /* ===== Decorative dividers ===== */
+  .ornament{
+    display:flex; align-items:center; gap:.7rem;
+    color:var(--gold); font-size:1.1rem;
+    margin:clamp(1rem,3vw,1.6rem) 0;
+  }
+  .ornament::before,.ornament::after{
+    content:""; height:1px; width:clamp(34px,12vw,90px);
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  /* =========================================================
+     HERO
+  ==========================================================*/
+  #hero{
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(16,185,129,.20), transparent 60%),
+      radial-gradient(80% 70% at 80% 110%, rgba(255,93,143,.14), transparent 60%),
+      linear-gradient(180deg,#05100a 0%, var(--bg) 55%, var(--bg-2) 100%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:clamp(1.8rem,5vw,3rem);
+    align-items:center;
+    justify-items:center;
+    text-align:center;
+  }
+  @media(min-width:880px){
+    .hero-grid{ grid-template-columns:1.1fr .9fr; text-align:left; justify-items:start; }
+    .hero-portrait-col{ justify-self:end; }
+  }
+
+  .crown{
+    font-size:clamp(2rem,8vw,3.2rem);
+    line-height:1;
+    margin-bottom:.3rem;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,.5));
+    animation:crownFloat 5s ease-in-out infinite;
+  }
+  @keyframes crownFloat{ 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+
+  .hero-name{
+    font-family:'Playfair Display',serif;
+    font-weight:900;
+    font-size:clamp(3.6rem,18vw,9rem);
+    letter-spacing:.01em;
+    line-height:.92;
+    text-shadow:0 10px 40px var(--shadow);
+  }
+  .king-line{
+    font-family:'Cinzel',serif;
+    font-weight:900;
+    letter-spacing:.18em;
+    font-size:clamp(.95rem,4.2vw,1.6rem);
+    color:var(--cream);
+    margin-top:clamp(.6rem,2vw,1rem);
+    display:flex; flex-wrap:wrap; gap:.4em .7em; align-items:center;
+    justify-content:center;
+  }
+  @media(min-width:880px){ .king-line{ justify-content:flex-start; } }
+  .king-word{ color:var(--gold-soft); }
+  .dot{ color:var(--emerald-bright); }
+  .sub-ru{
+    font-family:'Cormorant',serif; font-style:italic;
+    font-size:clamp(1rem,4vw,1.35rem); color:#cbe6d6; margin-top:.6rem;
+  }
+
+  /* Portrait baroque frame */
+  .portrait{
+    position:relative;
+    width:clamp(210px,62vw,330px);
+    aspect-ratio:3/4;
+  }
+  .portrait::before{
+    content:"";
+    position:absolute; inset:-14px;
+    border-radius:50% 50% 48% 48% / 8% 8% 6% 6%;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 45%),
+      linear-gradient(135deg,#fbe7a6,#caa23f 45%,#8a6a22 70%,#f3d987);
+    box-shadow:0 22px 60px rgba(0,0,0,.55), inset 0 0 0 3px rgba(255,255,255,.25);
+    z-index:0;
+  }
+  .portrait::after{
+    content:"";
+    position:absolute; inset:-30px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(16,185,129,.35), transparent 65%);
+    filter:blur(8px); z-index:-1;
+    animation:halo 6s ease-in-out infinite;
+  }
+  @keyframes halo{ 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.05)} }
+  .portrait .frame{
+    position:absolute; inset:0;
+    border-radius:46% 46% 44% 44% / 7% 7% 5% 5%;
+    padding:9px;
+    background:linear-gradient(160deg,#f6dd92,#9c7826 55%,#f3d987);
+    z-index:1;
+  }
+  .portrait img{
+    position:absolute; inset:9px; z-index:2;
+    width:calc(100% - 18px); height:calc(100% - 18px);
+    object-fit:cover;
+    object-position:50% 22%;
+    border-radius:42% 42% 40% 40% / 6% 6% 4% 4%;
+    box-shadow:inset 0 0 40px rgba(0,0,0,.35);
+  }
+  .portrait .flower-top{
+    position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+    font-size:clamp(1.6rem,6vw,2.4rem); z-index:2;
+    filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));
+  }
+
+  .scroll-hint{
+    position:absolute; left:50%; bottom:clamp(1rem,3vh,2rem);
+    transform:translateX(-50%);
+    z-index:4; text-align:center;
+    font-family:'Cinzel',serif; letter-spacing:.25em; font-size:.62rem;
+    color:var(--gold); text-transform:uppercase;
+  }
+  .scroll-hint .chev{
+    display:block; margin:.4rem auto 0; width:18px; height:18px;
+    border-right:2px solid var(--gold); border-bottom:2px solid var(--gold);
+    transform:rotate(45deg);
+    animation:bob 1.8s ease-in-out infinite;
+  }
+  @keyframes bob{ 0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5} 50%{transform:rotate(45deg) translate(4px,4px);opacity:1} }
+
+  /* =========================================================
+     GARDEN
+  ==========================================================*/
+  #garden{
+    background:
+      radial-gradient(90% 60% at 50% 0%, rgba(16,185,129,.12), transparent 60%),
+      linear-gradient(180deg,var(--bg-2),#06120c);
+    text-align:center;
+  }
+  .garden-flowers{
+    display:flex; flex-wrap:wrap; gap:clamp(.6rem,3vw,1.6rem);
+    justify-content:center; align-items:flex-end;
+    margin:clamp(1.4rem,5vw,2.6rem) 0;
+  }
+  .bloom{
+    width:clamp(54px,15vw,112px);
+    height:auto;
+    transform:scale(.2) rotate(-40deg);
+    opacity:0;
+    transform-origin:bottom center;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));
+  }
+  .stat-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(1rem,5vw,3rem);
+    margin-top:clamp(1.4rem,4vw,2.4rem);
+  }
+  .stat .num{
+    font-family:'Playfair Display',serif; font-weight:900;
+    font-size:clamp(1.8rem,7vw,3rem);
+  }
+  .stat .cap{
+    font-family:'Cormorant',serif; font-style:italic; color:#bfe0cf;
+    font-size:clamp(.9rem,3.4vw,1.1rem);
+  }
+
+  h2.title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,8vw,3.8rem);
+    margin-bottom:.4rem;
+  }
+
+  /* =========================================================
+     MONEY
+  ==========================================================*/
+  #money{
+    background:
+      radial-gradient(80% 60% at 50% 100%, rgba(232,195,106,.16), transparent 60%),
+      linear-gradient(180deg,#06120c,#091a10);
+    text-align:center;
+  }
+  .counter-card{
+    margin:clamp(1.6rem,5vw,2.6rem) auto 0;
+    max-width:520px;
+    padding:clamp(1.3rem,5vw,2.2rem);
+    border-radius:24px;
+    background:linear-gradient(160deg, rgba(15,81,50,.55), rgba(7,20,13,.7));
+    border:1px solid rgba(232,195,106,.4);
+    box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter:blur(6px);
+  }
+  .counter-card .label{
+    font-family:'Cormorant',serif; font-style:italic;
+    font-size:clamp(1rem,4vw,1.3rem); color:#e9e3d2;
+  }
+  .counter{
+    font-family:'Cinzel',serif; font-weight:900;
+    font-size:clamp(2.2rem,10vw,4.2rem);
+    margin:.3rem 0 .1rem;
+    line-height:1;
+    word-break:break-word;
+  }
+  .counter .cur{ font-size:.6em; vertical-align:.12em; }
+  .quip{
+    font-family:'Cormorant',serif; font-style:italic;
+    font-size:clamp(1.05rem,4.4vw,1.5rem); color:var(--gold-soft);
+    margin-top:clamp(1.2rem,4vw,2rem);
+  }
+
+  /* =========================================================
+     ASIA MAP
+  ==========================================================*/
+  #asia{
+    background:
+      radial-gradient(70% 60% at 80% 10%, rgba(255,93,143,.12), transparent 60%),
+      linear-gradient(180deg,#091a10,#06130d);
+  }
+  .asia-grid{
+    display:grid; grid-template-columns:1fr; gap:clamp(1.4rem,5vw,2.6rem);
+    align-items:center;
+  }
+  @media(min-width:840px){ .asia-grid{ grid-template-columns:1.05fr .95fr; } }
+
+  .map-box{
+    position:relative; width:100%;
+    border-radius:22px; overflow:hidden;
+    background:linear-gradient(160deg,#0c2a1b,#08160e);
+    border:1px solid rgba(232,195,106,.3);
+    box-shadow:0 18px 50px rgba(0,0,0,.5);
+    padding:clamp(.8rem,3vw,1.2rem);
+  }
+  .map-box svg{ width:100%; height:auto; display:block; }
+
+  .pins{ display:grid; gap:clamp(.8rem,2.5vw,1.2rem); }
+  .pin-card{
+    display:flex; gap:.9rem; align-items:flex-start;
+    padding:clamp(.9rem,3vw,1.2rem);
+    border-radius:16px;
+    background:linear-gradient(160deg, rgba(16,185,129,.1), rgba(7,20,13,.5));
+    border:1px solid rgba(232,195,106,.22);
+  }
+  .pin-card .dot-em{ font-size:1.5rem; line-height:1; }
+  .pin-card h3{
+    font-family:'Playfair Display',serif; font-size:clamp(1.1rem,4.4vw,1.45rem);
+    color:var(--gold-soft); margin-bottom:.2rem;
+  }
+  .pin-card p{ font-size:clamp(.85rem,3.2vw,.98rem); color:#cfe5d8; line-height:1.45; }
+
+  /* =========================================================
+     INTERACTIVE
+  ==========================================================*/
+  #rain{
+    background:
+      radial-gradient(80% 70% at 50% 50%, rgba(15,81,50,.4), transparent 70%),
+      linear-gradient(180deg,#06130d,#05100a);
+    text-align:center;
+  }
+  #rain canvas.fx{ z-index:1; }
+  .rain-btn{
+    position:relative;
+    margin-top:clamp(1.6rem,5vw,2.4rem);
+    min-height:64px;
+    min-width:min(86vw,360px);
+    padding:1.1rem 2.4rem;
+    border:none; cursor:pointer;
+    border-radius:999px;
+    font-family:'Cinzel',serif; font-weight:900;
+    letter-spacing:.14em; text-transform:uppercase;
+    font-size:clamp(1rem,4.4vw,1.4rem);
+    color:#27160a;
+    background:linear-gradient(135deg,#fff0c2,var(--gold) 45%,#bd8e2f 70%,var(--gold-soft));
+    box-shadow:0 14px 36px rgba(232,195,106,.4), inset 0 1px 0 rgba(255,255,255,.6);
+    transition:transform .12s ease, box-shadow .2s ease;
+    z-index:5;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .rain-btn:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 18px 46px rgba(232,195,106,.55); }
+  .rain-btn:active{ transform:translateY(1px) scale(.98); }
+  .rain-cap{
+    margin-top:clamp(1rem,3vw,1.5rem);
+    font-family:'Cormorant',serif; font-style:italic;
+    font-size:clamp(1.05rem,4.4vw,1.5rem); color:var(--gold-soft);
+  }
+  .tap-count{
+    margin-top:.6rem; font-family:'Inter',sans-serif; font-size:.85rem;
+    color:#9fc4ae; letter-spacing:.04em;
+  }
+
+  /* =========================================================
+     FINALE
+  ==========================================================*/
+  #finale{
+    background:
+      radial-gradient(100% 80% at 50% 120%, rgba(255,93,143,.18), transparent 60%),
+      radial-gradient(80% 60% at 50% -10%, rgba(232,195,106,.18), transparent 60%),
+      linear-gradient(180deg,#05100a,#081a10);
+    text-align:center;
+  }
+  .cake{
+    font-size:clamp(2.2rem,9vw,3.6rem);
+    line-height:1; margin-bottom:.4rem;
+    display:flex; gap:.1em; justify-content:center; flex-wrap:wrap;
+  }
+  .cake span{ display:inline-block; animation:flicker 2.4s ease-in-out infinite; }
+  .cake span:nth-child(2){ animation-delay:.4s }
+  .cake span:nth-child(3){ animation-delay:.8s }
+  .cake span:nth-child(4){ animation-delay:1.2s }
+  .cake span:nth-child(5){ animation-delay:1.6s }
+  @keyframes flicker{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+  .finale-name{
+    font-family:'Playfair Display',serif; font-weight:900;
+    font-size:clamp(2.2rem,9vw,4.6rem);
+    line-height:1.04; margin:.4rem 0 .2rem;
+  }
+  .finale-portrait{
+    width:clamp(160px,46vw,240px);
+    aspect-ratio:3/4;
+    margin:clamp(1.4rem,5vw,2.2rem) auto 0;
+    position:relative;
+  }
+  .finale-portrait .frame{
+    position:absolute; inset:0; padding:8px; border-radius:999px 999px 40% 40%/ 999px 999px 30% 30%;
+    background:linear-gradient(160deg,#f6dd92,#9c7826 55%,#f3d987);
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
+  }
+  .finale-portrait img{
+    position:absolute; inset:8px; z-index:1;
+    width:calc(100% - 16px); height:calc(100% - 16px); object-fit:cover; object-position:50% 22%;
+    border-radius:999px 999px 38% 38%/ 999px 999px 28% 28%;
+  }
+  .blessing{
+    font-family:'Cormorant',serif;
+    font-size:clamp(1.15rem,4.6vw,1.7rem); line-height:1.55;
+    color:#ece6d6; max-width:30ch; margin:clamp(1.4rem,5vw,2rem) auto 0;
+  }
+  .love{
+    font-family:'Cinzel',serif; font-weight:700; letter-spacing:.16em;
+    color:var(--gold-soft); margin-top:1rem; font-size:clamp(.85rem,3.6vw,1.05rem);
+    text-transform:uppercase;
+  }
+
+  footer{
+    position:relative; z-index:3;
+    text-align:center; padding:2rem 1rem 2.4rem;
+    font-size:.78rem; color:#6f8c7c; letter-spacing:.05em;
+  }
+  footer .heart{ color:var(--pink); }
+
+  /* ===== Reduced motion ===== */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    .bloom{ transform:none !important; opacity:1 !important; }
+    canvas.fx[data-motion]{ display:none; }
+    .crown,.portrait::after,.cake span{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="section">
+  <canvas class="fx" id="petals-hero" data-motion aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="crown" aria-hidden="true">👑🌸</div>
+        <div class="eyebrow">Flower King · Империя цветов</div>
+        <h1 class="hero-name gold-text">PETYA</h1>
+        <div class="king-line">
+          <span class="king-word">FLOWER</span>
+          <span class="king-word">KING</span>
+          <span class="dot">·</span>
+          <span>ИМПЕРИЯ ЦВЕТОВ</span>
+        </div>
+        <p class="sub-ru">Тот, у кого даже понедельник пахнет пионами.</p>
+      </div>
+      <div class="hero-portrait-col">
+        <div class="portrait">
+          <div class="flower-top" aria-hidden="true">🌹</div>
+          <div class="frame"></div>
+          <img src="../../assets/petya.jpg" alt="Петя — Король Цветов, в золотой барочной рамке">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">Листай вниз<span class="chev"></span></div>
+</section>
+
+<!-- ================= GARDEN ================= -->
+<section id="garden" class="section">
+  <canvas class="fx" id="petals-garden" data-motion aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Глава первая</div>
+    <h2 class="title gold-text">Сад начинался с одного букета</h2>
+    <div class="ornament" aria-hidden="true">🌿 ❀ 🌿</div>
+
+    <div class="garden-flowers" id="bloomRow" aria-hidden="true">
+      <!-- SVG flowers injected/static -->
+      <svg class="bloom" viewBox="0 0 100 120" fill="none"><g><circle cx="50" cy="40" r="14" fill="#ffd76a"/><g fill="#ff5d8f"><ellipse cx="50" cy="16" rx="11" ry="18"/><ellipse cx="74" cy="32" rx="18" ry="11"/><ellipse cx="74" cy="58" rx="18" ry="11"/><ellipse cx="50" cy="74" rx="11" ry="18"/><ellipse cx="26" cy="58" rx="18" ry="11"/><ellipse cx="26" cy="32" rx="18" ry="11"/></g><circle cx="50" cy="40" r="9" fill="#a8341f"/><rect x="47" y="78" width="6" height="38" rx="3" fill="#10b981"/></g></svg>
+      <svg class="bloom" viewBox="0 0 100 120" fill="none"><g><g fill="#ff9ec4"><circle cx="50" cy="30" r="13"/><circle cx="34" cy="44" r="13"/><circle cx="66" cy="44" r="13"/><circle cx="40" cy="60" r="13"/><circle cx="60" cy="60" r="13"/></g><circle cx="50" cy="45" r="10" fill="#ffd76a"/><rect x="47" y="68" width="6" height="48" rx="3" fill="#10b981"/></g></svg>
+      <svg class="bloom" viewBox="0 0 100 120" fill="none"><g><g fill="#f5d77a"><ellipse cx="50" cy="14" rx="9" ry="20"/><ellipse cx="50" cy="76" rx="9" ry="20"/><ellipse cx="20" cy="45" rx="20" ry="9"/><ellipse cx="80" cy="45" rx="20" ry="9"/><ellipse cx="28" cy="23" rx="16" ry="9" transform="rotate(45 28 23)"/><ellipse cx="72" cy="23" rx="16" ry="9" transform="rotate(-45 72 23)"/><ellipse cx="28" cy="67" rx="16" ry="9" transform="rotate(-45 28 67)"/><ellipse cx="72" cy="67" rx="16" ry="9" transform="rotate(45 72 67)"/></g><circle cx="50" cy="45" r="11" fill="#a8341f"/><rect x="47" y="78" width="6" height="38" rx="3" fill="#10b981"/></g></svg>
+      <svg class="bloom" viewBox="0 0 100 120" fill="none"><g><g fill="#ff5d8f"><circle cx="50" cy="34" r="12"/><circle cx="36" cy="46" r="12"/><circle cx="64" cy="46" r="12"/><circle cx="50" cy="56" r="12"/></g><circle cx="50" cy="45" r="8" fill="#fff4d2"/><rect x="47" y="64" width="6" height="52" rx="3" fill="#10b981"/></g></svg>
+      <svg class="bloom" viewBox="0 0 100 120" fill="none"><g><g fill="#e879b6"><ellipse cx="50" cy="18" rx="10" ry="16"/><ellipse cx="72" cy="34" rx="16" ry="10"/><ellipse cx="72" cy="56" rx="16" ry="10"/><ellipse cx="50" cy="72" rx="10" ry="16"/><ellipse cx="28" cy="56" rx="16" ry="10"/><ellipse cx="28" cy="34" rx="16" ry="10"/></g><circle cx="50" cy="45" r="10" fill="#ffd76a"/><rect x="47" y="76" width="6" height="40" rx="3" fill="#10b981"/></g></svg>
+    </div>
+
+    <p class="lead" style="margin:0 auto;">
+      С чего всё началось: <strong style="color:var(--gold-soft)">один букет</strong>. Потом — тысяча.
+      Потом — целая <strong style="color:var(--pink)">империя</strong>.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num gold-text">1</div><div class="cap">первый букет</div></div>
+      <div class="stat"><div class="num gold-text">∞</div><div class="cap">букетов с тех пор</div></div>
+      <div class="stat"><div class="num gold-text">🌸</div><div class="cap">его подпись</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MONEY ================= -->
+<section id="money" class="section">
+  <canvas class="fx" id="money-canvas" data-motion aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Глава вторая</div>
+    <h2 class="title gold-text">А потом деньги начали падать с неба</h2>
+    <div class="ornament" aria-hidden="true">💸 ✦ 💸</div>
+
+    <div class="counter-card">
+      <div class="label">Заработано, пока ты это читаешь:</div>
+      <div class="counter gold-text" id="counter"><span class="cur">฿</span>0</div>
+      <div class="label" style="opacity:.8">…и счётчик не собирается тормозить.</div>
+    </div>
+
+    <p class="quip">«Лёгкие деньги? Нет такого. Есть Петя.»</p>
+  </div>
+</section>
+
+<!-- ================= ASIA ================= -->
+<section id="asia" class="section">
+  <div class="wrap">
+    <div class="eyebrow">Глава третья</div>
+    <h2 class="title gold-text" style="text-align:center;margin-bottom:.6rem;">Где правит Король Цветов</h2>
+    <div class="ornament" style="justify-content:center" aria-hidden="true">✈️ ❀ ✈️</div>
+
+    <div class="asia-grid">
+      <div class="map-box">
+        <svg viewBox="0 0 320 300" role="img" aria-label="Стилизованная карта Азии с отмеченными городами Пети">
+          <defs>
+            <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#10b981" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#0f5132" stop-opacity=".85"/>
+            </linearGradient>
+            <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#ff5d8f"/>
+              <stop offset="1" stop-color="#ff5d8f" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- abstract landmass -->
+          <path d="M40,70 C70,40 120,45 150,60 C180,40 230,55 250,90 C285,100 300,140 270,165 C285,200 250,235 215,225 C200,260 150,265 130,235 C90,250 55,225 65,190 C30,175 25,120 60,110 C45,95 35,82 40,70 Z"
+                fill="url(#land)" stroke="#e8c36a" stroke-opacity=".5" stroke-width="2"/>
+          <!-- decorative coastline dashes -->
+          <path d="M40,70 C70,40 120,45 150,60 C180,40 230,55 250,90"
+                fill="none" stroke="#f5d77a" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="4 6"/>
+
+          <!-- Pins -->
+          <g class="map-pin">
+            <circle cx="120" cy="150" r="22" fill="url(#pinGlow)"/>
+            <circle cx="120" cy="150" r="6" fill="#ff5d8f" stroke="#fff" stroke-width="2"/>
+            <text x="120" y="135" text-anchor="middle" fill="#faf6ec" font-family="Cinzel,serif" font-size="11" font-weight="700">Бангкок</text>
+          </g>
+          <g class="map-pin">
+            <circle cx="225" cy="120" r="22" fill="url(#pinGlow)"/>
+            <circle cx="225" cy="120" r="6" fill="#f5d77a" stroke="#fff" stroke-width="2"/>
+            <text x="225" y="105" text-anchor="middle" fill="#faf6ec" font-family="Cinzel,serif" font-size="11" font-weight="700">Гонконг</text>
+          </g>
+          <g class="map-pin">
+            <circle cx="150" cy="210" r="22" fill="url(#pinGlow)"/>
+            <circle cx="150" cy="210" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/>
+            <text x="150" y="234" text-anchor="middle" fill="#faf6ec" font-family="Cinzel,serif" font-size="11" font-weight="700">Таиланд</text>
+          </g>
+          <!-- connecting royal route -->
+          <path d="M120,150 Q175,110 225,120" fill="none" stroke="#e8c36a" stroke-width="1.6" stroke-dasharray="2 5" stroke-opacity=".7"/>
+          <path d="M120,150 Q120,185 150,210" fill="none" stroke="#e8c36a" stroke-width="1.6" stroke-dasharray="2 5" stroke-opacity=".7"/>
+        </svg>
+      </div>
+
+      <div class="pins">
+        <div class="pin-card">
+          <span class="dot-em" aria-hidden="true">🛕</span>
+          <div><h3>Бангкок</h3><p>Уличная еда до утра, тук-туки и массаж, после которого хочется купить ещё один цветочный магазин.</p></div>
+        </div>
+        <div class="pin-card">
+          <span class="dot-em" aria-hidden="true">🏙️</span>
+          <div><h3>Гонконг</h3><p>Неон, дим-сам и виды с небоскрёбов — масштаб, в котором империя цветов чувствует себя как дома.</p></div>
+        </div>
+        <div class="pin-card">
+          <span class="dot-em" aria-hidden="true">🌴</span>
+          <div><h3>Таиланд</h3><p>Острова, спа и тот самый массаж. Релакс уровня «деньги пусть падают сами, я занят».</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTERACTIVE RAIN ================= -->
+<section id="rain" class="section">
+  <canvas class="fx" id="burst-canvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Только для Короля</div>
+    <h2 class="title gold-text">Сделай дождь</h2>
+    <div class="ornament" style="justify-content:center" aria-hidden="true">💵 🌸 💵</div>
+
+    <button class="rain-btn" id="makeItRain" type="button" aria-label="Сделать денежный дождь">MAKE IT RAIN</button>
+    <p class="rain-cap">Давай, Петя. Сделай дождь. 🌧️💸</p>
+    <p class="tap-count" id="tapCount" aria-live="polite">Жать можно сколько угодно.</p>
+  </div>
+</section>
+
+<!-- ================= FINALE ================= -->
+<section id="finale" class="section">
+  <canvas class="fx" id="petals-finale" data-motion aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="cake" aria-hidden="true"><span>🌸</span><span>🎂</span><span>🌹</span><span>🌷</span><span>🌸</span></div>
+    <div class="eyebrow">С праздником</div>
+    <h2 class="finale-name gold-text">С Днём Рождения, Король!</h2>
+    <p class="sub-ru" style="font-family:'Cormorant',serif;font-style:italic;color:#cbe6d6;">С Днём Рождения, Петя 🌸</p>
+
+    <div class="finale-portrait">
+      <div class="frame"></div>
+      <img src="../../assets/petya.jpg" alt="Петя — Король Цветов в день рождения">
+    </div>
+
+    <p class="blessing">
+      Пусть империя растёт, лепестки не вянут,<br>
+      а небо не скупится на дождь.
+    </p>
+    <p class="love">Любим тебя 👑🌸</p>
+  </div>
+</section>
+
+<footer>
+  Сделано с любовью и охапкой цветов для Пети <span class="heart">♥</span>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  /* ---------- helpers ---------- */
+  function rand(a,b){ return a + Math.random()*(b-a); }
+  function debounce(fn,ms){ var t; return function(){ clearTimeout(t); var a=arguments,c=this; t=setTimeout(function(){fn.apply(c,a);},ms); }; }
+
+  /* ---------- Particle field factory (petals or money) ---------- */
+  function makeField(canvas, opts){
+    if(!canvas) return null;
+    var ctx = canvas.getContext('2d');
+    var W=0,H=0, particles=[], raf=null, running=false, visible=false;
+
+    function densityCount(){
+      var base = opts.type==='money' ? 0.00010 : 0.00016;
+      var n = Math.round(W*H*base);
+      return Math.max(opts.min||10, Math.min(n, opts.max||80));
+    }
+
+    function resize(){
+      var r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = Math.max(1, Math.round(W*DPR));
+      canvas.height = Math.max(1, Math.round(H*DPR));
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      build();
+    }
+
+    function build(){
+      var n = densityCount();
+      particles = [];
+      for(var i=0;i<n;i++) particles.push(spawn(true));
+    }
+
+    function spawn(initial){
+      var p = {
+        x: rand(0,W),
+        y: initial ? rand(-H,H) : rand(-60,-10),
+        size: opts.type==='money' ? rand(16,30) : rand(8,18),
+        speed: rand(opts.type==='money'?0.6:0.4, opts.type==='money'?1.8:1.3),
+        sway: rand(0.5,1.6),
+        swayOff: rand(0,Math.PI*2),
+        rot: rand(0,Math.PI*2),
+        rotSpeed: rand(-0.03,0.03),
+        kind: Math.floor(rand(0,opts.kinds||3)),
+        hueShift: Math.random()
+      };
+      return p;
+    }
+
+    function drawPetal(p){
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      var s=p.size;
+      // color palette pink / white
+      var pink = p.hueShift>0.5;
+      ctx.fillStyle = pink
+        ? 'rgba(255,'+Math.round(rand(120,150))+','+Math.round(rand(160,180))+',0.92)'
+        : 'rgba(255,250,240,0.9)';
+      ctx.beginPath();
+      ctx.moveTo(0,-s*0.5);
+      ctx.bezierCurveTo(s*0.5,-s*0.5, s*0.5,s*0.5, 0,s*0.6);
+      ctx.bezierCurveTo(-s*0.5,s*0.5, -s*0.5,-s*0.5, 0,-s*0.5);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawMoney(p){
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      var w=p.size*1.5, h=p.size;
+      if(p.kind===0){ // bill
+        ctx.fillStyle='rgba(34,139,87,0.92)';
+        ctx.strokeStyle='rgba(245,215,122,0.9)';
+        ctx.lineWidth=1.5;
+        roundRect(-w/2,-h/2,w,h,3); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0,0,h*0.28,0,Math.PI*2);
+        ctx.strokeStyle='rgba(245,215,122,0.85)'; ctx.stroke();
+      } else { // coin
+        var rad=p.size*0.55;
+        ctx.beginPath(); ctx.arc(0,0,rad,0,Math.PI*2);
+        ctx.fillStyle='rgba(232,195,106,0.95)'; ctx.fill();
+        ctx.lineWidth=2; ctx.strokeStyle='rgba(189,142,47,0.9)'; ctx.stroke();
+        ctx.fillStyle='rgba(120,86,20,0.9)';
+        ctx.font='bold '+Math.round(rad)+'px Cinzel, serif';
+        ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText('฿',0,1);
+      }
+      ctx.restore();
+    }
+
+    function roundRect(x,y,w,h,r){
+      ctx.beginPath();
+      ctx.moveTo(x+r,y);
+      ctx.arcTo(x+w,y,x+w,y+h,r);
+      ctx.arcTo(x+w,y+h,x,y+h,r);
+      ctx.arcTo(x,y+h,x,y,r);
+      ctx.arcTo(x,y,x+w,y,r);
+      ctx.closePath();
+    }
+
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<particles.length;i++){
+        var p=particles[i];
+        p.y += p.speed*1.4;
+        p.x += Math.sin((p.y*0.01)+p.swayOff)*p.sway*0.6;
+        p.rot += p.rotSpeed;
+        if(p.y > H+40){ particles[i]=spawn(false); particles[i].x=rand(0,W); }
+        if(opts.type==='money') drawMoney(p); else drawPetal(p);
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    function start(){ if(running||prefersReduced) return; running=true; step(); }
+    function stop(){ running=false; if(raf) cancelAnimationFrame(raf); raf=null; }
+
+    resize();
+    window.addEventListener('resize', debounce(resize,180));
+
+    return {
+      canvas:canvas,
+      setVisible:function(v){ visible=v; if(v) start(); else stop(); },
+      resize:resize
+    };
+  }
+
+  /* ---------- Instantiate fields ---------- */
+  var fields = [];
+  function add(id,opts){ var f=makeField(document.getElementById(id),opts); if(f) fields.push({id:id,field:f, section:document.getElementById(id).closest('.section')}); return f; }
+
+  if(!prefersReduced){
+    add('petals-hero',   {type:'petal', kinds:2, min:14, max:70});
+    add('petals-garden', {type:'petal', kinds:2, min:14, max:60});
+    add('money-canvas',  {type:'money', kinds:2, min:12, max:55});
+    add('petals-finale', {type:'petal', kinds:2, min:14, max:65});
+  }
+
+  /* ---------- IntersectionObserver to pause off-screen ---------- */
+  if('IntersectionObserver' in window && !prefersReduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var sec = e.target;
+        fields.forEach(function(f){
+          if(f.field.canvas.closest('.section')===sec){
+            f.field.setVisible(e.isIntersecting && e.intersectionRatio>0.05);
+          }
+        });
+      });
+    },{threshold:[0,0.06,0.5]});
+    ['hero','garden','money','finale'].forEach(function(id){
+      var s=document.getElementById(id); if(s) io.observe(s);
+    });
+  }
+
+  /* =========================================================
+     GSAP scroll animations
+  ==========================================================*/
+  if(window.gsap){
+    try{
+      gsap.registerPlugin(ScrollTrigger);
+
+      if(!prefersReduced){
+        // Garden bloom stagger
+        var blooms = gsap.utils.toArray('.bloom');
+        if(blooms.length){
+          gsap.to(blooms,{
+            scale:1, rotate:0, opacity:1,
+            ease:'back.out(1.6)',
+            duration:1,
+            stagger:0.18,
+            scrollTrigger:{ trigger:'#garden', start:'top 65%', toggleActions:'play none none reverse' }
+          });
+        }
+
+        // Hero parallax on portrait
+        gsap.to('.hero-portrait-col',{
+          yPercent:-8, ease:'none',
+          scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:true }
+        });
+
+        // Money section quip + counter card rise
+        gsap.from('.counter-card',{
+          y:50, opacity:0, duration:1, ease:'power2.out',
+          scrollTrigger:{ trigger:'#money', start:'top 60%' }
+        });
+        gsap.from('.quip',{
+          opacity:0, y:30, duration:1,
+          scrollTrigger:{ trigger:'.quip', start:'top 85%' }
+        });
+
+        // Asia pins
+        gsap.from('.pin-card',{
+          x:40, opacity:0, duration:.8, stagger:.15, ease:'power2.out',
+          scrollTrigger:{ trigger:'#asia', start:'top 55%' }
+        });
+        gsap.from('.map-box',{
+          scale:.9, opacity:0, duration:1, ease:'power2.out',
+          scrollTrigger:{ trigger:'#asia', start:'top 60%' }
+        });
+
+        // Finale reveal
+        gsap.from('.finale-name',{
+          scale:.85, opacity:0, duration:1.1, ease:'back.out(1.4)',
+          scrollTrigger:{ trigger:'#finale', start:'top 60%' }
+        });
+        gsap.from('.finale-portrait',{
+          y:40, opacity:0, duration:1, ease:'power2.out',
+          scrollTrigger:{ trigger:'#finale', start:'top 50%' }
+        });
+        gsap.from('.blessing',{
+          opacity:0, y:20, duration:1,
+          scrollTrigger:{ trigger:'.blessing', start:'top 85%' }
+        });
+      }
+    }catch(err){ /* fail silently, page stays usable */ }
+  }
+
+  /* =========================================================
+     Money counter (RAF-driven, eased growth)
+  ==========================================================*/
+  (function(){
+    var el = document.getElementById('counter');
+    if(!el) return;
+    var value = 0;
+    var perSecondBase = 1850;     // baht-ish fantasy rate
+    var started = false, last=0, rafId=null;
+    var fmt = new Intl.NumberFormat('ru-RU');
+
+    function render(){
+      el.innerHTML = '<span class="cur">฿</span>' + fmt.format(Math.floor(value));
+    }
+
+    function tick(ts){
+      if(!last) last=ts;
+      var dt = (ts-last)/1000; last=ts;
+      // gentle acceleration so it feels alive
+      var rate = perSecondBase * (1 + Math.sin(ts*0.0004)*0.25);
+      value += rate*dt;
+      render();
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function startCounter(){
+      if(started || prefersReduced) return;
+      started=true; last=0; rafId=requestAnimationFrame(tick);
+    }
+    function stopCounter(){ if(rafId){ cancelAnimationFrame(rafId); rafId=null; } started=false; }
+
+    if(prefersReduced){ value = 482910; render(); return; }
+
+    if('IntersectionObserver' in window){
+      var mio = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting) startCounter(); else stopCounter();
+        });
+      },{threshold:0.2});
+      mio.observe(document.getElementById('money'));
+    } else {
+      startCounter();
+    }
+  })();
+
+  /* =========================================================
+     MAKE IT RAIN — burst emitter
+  ==========================================================*/
+  (function(){
+    var canvas = document.getElementById('burst-canvas');
+    var btn = document.getElementById('makeItRain');
+    var tapEl = document.getElementById('tapCount');
+    if(!canvas || !btn) return;
+
+    var ctx = canvas.getContext('2d');
+    var W=0,H=0, parts=[], raf=null, taps=0, ambient=false;
+    var section = document.getElementById('rain');
+
+    function resize(){
+      var r = canvas.getBoundingClientRect();
+      W=r.width; H=r.height;
+      canvas.width=Math.max(1,Math.round(W*DPR));
+      canvas.height=Math.max(1,Math.round(H*DPR));
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    resize();
+    window.addEventListener('resize', debounce(resize,180));
+
+    function roundRect(x,y,w,h,rr){
+      ctx.beginPath();
+      ctx.moveTo(x+rr,y); ctx.arcTo(x+w,y,x+w,y+h,rr);
+      ctx.arcTo(x+w,y+h,x,y+h,rr); ctx.arcTo(x,y+h,x,y,rr);
+      ctx.arcTo(x,y,x+w,y,rr); ctx.closePath();
+    }
+
+    function makeParticle(x,y,vx,vy,kind){
+      return {
+        x:x,y:y,vx:vx,vy:vy,
+        size: kind==='petal'? rand(9,18) : rand(15,28),
+        rot:rand(0,Math.PI*2), rotSpeed:rand(-0.2,0.2),
+        kind:kind, sub:Math.floor(rand(0,2)),
+        life:1, decay:rand(0.004,0.009),
+        hue:Math.random()
+      };
+    }
+
+    function burst(x,y,amount){
+      var n = prefersReduced ? 0 : (amount || (window.innerWidth<560?26:42));
+      for(var i=0;i<n;i++){
+        var ang = rand(0,Math.PI*2);
+        var spd = rand(2,9);
+        var kind = Math.random()<0.55 ? 'money' : 'petal';
+        parts.push(makeParticle(x,y,Math.cos(ang)*spd, Math.sin(ang)*spd - rand(1,5), kind));
+      }
+      if(parts.length>900) parts.splice(0, parts.length-900);
+      ensureRunning();
+    }
+
+    function drawPart(p){
+      ctx.save();
+      ctx.globalAlpha = Math.max(0,Math.min(1,p.life));
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      if(p.kind==='petal'){
+        var s=p.size;
+        ctx.fillStyle = p.hue>0.5 ? 'rgba(255,93,143,0.95)' : 'rgba(255,250,240,0.92)';
+        ctx.beginPath();
+        ctx.moveTo(0,-s*0.5);
+        ctx.bezierCurveTo(s*0.5,-s*0.5,s*0.5,s*0.5,0,s*0.6);
+        ctx.bezierCurveTo(-s*0.5,s*0.5,-s*0.5,-s*0.5,0,-s*0.5);
+        ctx.fill();
+      } else if(p.sub===0){
+        var w=p.size*1.5,h=p.size;
+        ctx.fillStyle='rgba(34,139,87,0.95)';
+        ctx.strokeStyle='rgba(245,215,122,0.95)'; ctx.lineWidth=1.5;
+        roundRect(-w/2,-h/2,w,h,3); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0,0,h*0.26,0,Math.PI*2);
+        ctx.strokeStyle='rgba(245,215,122,0.9)'; ctx.stroke();
+      } else {
+        var rad=p.size*0.55;
+        ctx.beginPath(); ctx.arc(0,0,rad,0,Math.PI*2);
+        ctx.fillStyle='rgba(232,195,106,0.97)'; ctx.fill();
+        ctx.lineWidth=2; ctx.strokeStyle='rgba(189,142,47,0.95)'; ctx.stroke();
+        ctx.fillStyle='rgba(120,86,20,0.95)';
+        ctx.font='bold '+Math.round(rad)+'px Cinzel, serif';
+        ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.fillText('฿',0,1);
+      }
+      ctx.restore();
+    }
+
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=parts.length-1;i>=0;i--){
+        var p=parts[i];
+        p.vy += 0.18;          // gravity
+        p.vx *= 0.992;
+        p.x += p.vx; p.y += p.vy;
+        p.rot += p.rotSpeed;
+        p.life -= p.decay;
+        if(p.life<=0 || p.y>H+60){ parts.splice(i,1); continue; }
+        drawPart(p);
+      }
+      if(parts.length>0){
+        raf = requestAnimationFrame(step);
+      } else {
+        raf=null;
+      }
+    }
+    function ensureRunning(){ if(!raf && !prefersReduced) raf=requestAnimationFrame(step); }
+
+    function pointerToCanvas(clientX, clientY){
+      var r = canvas.getBoundingClientRect();
+      return { x: clientX - r.left, y: clientY - r.top };
+    }
+
+    function fireFromEvent(ev){
+      var cx, cy;
+      if(ev && typeof ev.clientX==='number'){ cx=ev.clientX; cy=ev.clientY; }
+      else {
+        var br = btn.getBoundingClientRect();
+        cx = br.left+br.width/2; cy = br.top+br.height/2;
+      }
+      var pt = pointerToCanvas(cx,cy);
+      burst(pt.x, pt.y);
+      taps++;
+      var msgs=['Ещё! Небо не против. 💸','Король доволен. 👑','Лей дальше, лепестки терпеливые. 🌸','Дождь крепчает! ☔️💵','Petya approves. ✨'];
+      tapEl.textContent = (taps>1? taps+' раз · ':'') + msgs[Math.min(taps-1,msgs.length-1)];
+    }
+
+    // pointerdown gives precise burst origin on tap or click
+    btn.addEventListener('pointerdown', function(ev){ fireFromEvent(ev); });
+    // keyboard accessibility
+    btn.addEventListener('keydown', function(ev){
+      if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); fireFromEvent(null); }
+    });
+
+    // gentle ambient drizzle while section visible
+    var drizzleTimer=null;
+    function ambientDrizzle(){
+      if(prefersReduced) return;
+      burst(rand(W*0.1,W*0.9), -20, window.innerWidth<560?3:5);
+    }
+    if('IntersectionObserver' in window){
+      var rio = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting && !prefersReduced){
+            if(!drizzleTimer) drizzleTimer=setInterval(ambientDrizzle,700);
+          } else {
+            if(drizzleTimer){ clearInterval(drizzleTimer); drizzleTimer=null; }
+          }
+        });
+      },{threshold:0.25});
+      rio.observe(section);
+    }
+  })();
+
+  /* =========================================================
+     Console easter-egg
+  ==========================================================*/
+  try{
+    console.log('%c👑 С Днём Рождения, Петя — Король Цветов! 🌸',
+      'font-size:18px;font-weight:bold;color:#e8c36a;text-shadow:1px 1px 0 #0f5132;padding:6px 0;');
+    console.log('%c💸 Пусть деньги падают с неба, а лепестки — никогда не вянут. 🌹',
+      'font-size:13px;color:#ff5d8f;font-style:italic;');
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

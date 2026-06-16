@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>🎂 Петя &amp; Настя — выбери вселенную поздравления</title>
+<meta name="description" content="Поздравления с днём рождения для Пети и Насти — несколько одностраничных скролл-сайтов. Выбери стиль." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Playfair+Display:ital,wght@1,600;1,700&family=JetBrains+Mono:wght@400;700&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #07070d;
+    --fg: #ecebf3;
+    --muted: #9a9ab2;
+    --petya: #f5c451;   /* золото */
+    --petya2: #38e1ff;  /* неон-cyan */
+    --petya3: #ff5d8f;  /* розовый */
+    --nastya: #ff9a5a;  /* закат */
+    --nastya2: #ff6f9c; /* розовое золото */
+    --nastya3: #a8c686; /* матча */
+  }
+  html, body { background: var(--bg); color: var(--fg); font-family: Manrope, system-ui, sans-serif; min-height: 100svh; overflow-x: hidden; max-width: 100%; }
+  body {
+    background:
+      radial-gradient(ellipse at 18% -5%, rgba(245,196,81,0.14), transparent 52%),
+      radial-gradient(ellipse at 85% 8%, rgba(56,225,255,0.10), transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(255,111,156,0.12), transparent 60%),
+      var(--bg);
+  }
+  .grid-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 28%, transparent 82%);
+    mask-image: radial-gradient(ellipse at center, black 28%, transparent 82%);
+  }
+  main { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: clamp(22px, 5vw, 60px) clamp(18px, 4vw, 44px) clamp(40px, 8vw, 80px); }
+
+  header.hero { text-align: center; padding: clamp(34px, 9vh, 110px) 0 clamp(20px, 5vh, 56px); }
+  .pre {
+    font-family: 'JetBrains Mono', monospace; font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: 0.4em; color: var(--petya2); text-transform: uppercase; margin-bottom: 16px; opacity: 0.9;
+  }
+  .pre::before { content: '// '; color: var(--muted); }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 0.98;
+    font-size: clamp(34px, 8.5vw, 88px); letter-spacing: -0.02em;
+    background: linear-gradient(95deg, #fff 0%, var(--petya) 30%, var(--nastya2) 62%, var(--petya2) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-size: 240% 100%; animation: shift 13s ease-in-out infinite;
+  }
+  @keyframes shift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  h1 small {
+    display: block; font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600;
+    font-size: clamp(18px, 3.4vw, 38px); margin-top: 12px; letter-spacing: 0;
+    background: linear-gradient(90deg, var(--nastya), var(--petya3)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle { margin: 20px auto 0; color: var(--muted); font-size: clamp(14px, 1.6vw, 18px); max-width: 600px; line-height: 1.6; }
+  .hint {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; padding: 9px 16px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--muted); background: rgba(255,255,255,0.03); backdrop-filter: blur(8px);
+  }
+  .hint::before { content: '↓'; color: var(--petya); animation: bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(3px); } }
+
+  .person { margin-top: clamp(34px, 7vh, 72px); }
+  .person-head { display: flex; align-items: center; gap: 16px; margin-bottom: clamp(16px, 3vh, 26px); }
+  .avatar {
+    width: clamp(54px, 9vw, 74px); height: clamp(54px, 9vw, 74px); border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.16); box-shadow: 0 8px 30px -10px rgba(0,0,0,0.7); flex: 0 0 auto;
+  }
+  .person-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(22px, 4vw, 34px); line-height: 1.05; }
+  .person-title span { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; }
+  .person-sub { color: var(--muted); font-size: clamp(12px, 1.5vw, 15px); margin-top: 3px; }
+  .person.petya .person-title span { color: var(--petya); }
+  .person.nastya .person-title span { color: var(--nastya); }
+  .rule { flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(14px, 2.4vw, 24px); }
+
+  .card {
+    position: relative; display: flex; flex-direction: column; justify-content: space-between;
+    padding: clamp(18px, 2.4vw, 26px); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px;
+    background: rgba(20,20,30,0.62); backdrop-filter: blur(14px); overflow: hidden; text-decoration: none; color: var(--fg);
+    min-height: clamp(196px, 30vw, 232px); isolation: isolate;
+    transition: transform 0.4s cubic-bezier(.2,.7,.3,1), border-color 0.3s, box-shadow 0.4s;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: -2px; border-radius: 20px; z-index: -1; opacity: 0; filter: blur(16px);
+    background: linear-gradient(135deg, var(--c1), var(--c2)); transition: opacity 0.35s;
+  }
+  .card:hover, .card:focus-visible { transform: translateY(-6px); border-color: rgba(255,255,255,0.2); box-shadow: 0 22px 54px -22px rgba(0,0,0,0.7); }
+  .card:hover::before, .card:focus-visible::before { opacity: 0.5; }
+  .card-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.28em; }
+  .card-num b { color: var(--c1); font-weight: 700; }
+  .card-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(19px, 2.4vw, 26px); margin-top: 10px; line-height: 1.12; color: #fff; }
+  .card-title em { font-style: italic; font-family: 'Playfair Display', serif; color: var(--c1); }
+  .card-desc { margin-top: 11px; color: var(--muted); font-size: clamp(13px, 1.5vw, 14px); line-height: 1.55; }
+  .card-emoji { position: absolute; top: 14px; right: 16px; font-size: clamp(34px, 5vw, 50px); line-height: 1; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5)); transition: transform 0.6s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .card:hover .card-emoji { transform: rotate(-8deg) scale(1.14); }
+  .card-foot { margin-top: auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); padding: 3px 8px; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; }
+  .tag.hot { color: var(--c1); border-color: color-mix(in srgb, var(--c1) 42%, transparent); }
+  .card-cta { width: 100%; margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--c1); letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; }
+  .card-cta::after { content: '→'; transition: transform 0.3s; }
+  .card:hover .card-cta::after { transform: translateX(6px); }
+
+  /* акценты карточек */
+  .p1 { --c1: #38e1ff; --c2: #f5c451; }
+  .p2 { --c1: #6fae8f; --c2: #cfa75f; }
+  .p3 { --c1: #f5d77a; --c2: #ff5d8f; }
+  .n1 { --c1: #ff9a5a; --c2: #ff6f9c; }
+  .n2 { --c1: #a8c686; --c2: #e8b4b8; }
+
+  footer { margin-top: clamp(44px, 9vh, 84px); padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; line-height: 1.8; }
+  footer .heart { color: var(--petya3); }
+
+  .float { position: fixed; pointer-events: none; z-index: 0; opacity: 0.16; animation: drift linear infinite; }
+  @keyframes drift { from { transform: translateY(112vh) rotate(0deg); } to { transform: translateY(-20vh) rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1 { animation: none; }
+    .hint::before { animation: none; }
+    .float { display: none; }
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<main>
+  <header class="hero">
+    <div class="pre">happy-birthday.exe · two legends, one day</div>
+    <h1>Петя &amp; Настя
+      <small>выбери вселенную поздравления</small>
+    </h1>
+    <p class="subtitle">Сегодня день рождения сразу у двоих. Ниже — отдельные мини-сайты под каждого. Открывай, скролль, выбирай любимый.</p>
+    <div class="hint">скролль и выбери стиль · клавиши 1–5</div>
+  </header>
+
+  <section class="person petya" aria-label="Варианты для Пети">
+    <div class="person-head">
+      <img class="avatar" src="assets/petya.jpg" alt="Петя" />
+      <div>
+        <div class="person-title">Для <span>Пети</span></div>
+        <div class="person-sub">цветы · Азия · массажи · деньги с неба · 3 вселенные</div>
+      </div>
+      <div class="rule"></div>
+    </div>
+    <div class="grid">
+      <a class="card p1" href="petya/asia-boarding-pass/" data-k="1">
+        <div class="card-emoji" aria-hidden="true">✈️</div>
+        <div>
+          <div class="card-num">ПЕТЯ · <b>01</b> · TRAVEL</div>
+          <h2 class="card-title"><em>Asia</em> Boarding Pass</h2>
+          <p class="card-desc">Перелёт первым классом по Азии. Скролл = полёт: Бангкок → Гонконг → Бали, спа-стоп и денежный дождь на посадке.</p>
+        </div>
+        <div>
+          <div class="card-foot"><span class="tag hot">canvas</span><span class="tag">GSAP</span><span class="tag">money-rain</span></div>
+          <div class="card-cta">открыть</div>
+        </div>
+      </a>
+      <a class="card p2" href="petya/zen-spa/" data-k="2">
+        <div class="card-emoji" aria-hidden="true">💆</div>
+        <div>
+          <div class="card-num">ПЕТЯ · <b>02</b> · ZEN</div>
+          <h2 class="card-title">Дзен-<em>спа</em> Азии</h2>
+          <p class="card-desc">Медитативный лонгрид: дым благовоний, лотос и 12 коанов про цветы, массажи и лёгкие деньги. Выдохни.</p>
+        </div>
+        <div>
+          <div class="card-foot"><span class="tag hot">smoke</span><span class="tag">koans</span><span class="tag">mood</span></div>
+          <div class="card-cta">открыть</div>
+        </div>
+      </a>
+      <a class="card p3" href="petya/flower-empire/" data-k="3">
+        <div class="card-emoji" aria-hidden="true">🌸</div>
+        <div>
+          <div class="card-num">ПЕТЯ · <b>03</b> · EMPIRE</div>
+          <h2 class="card-title">Империя <em>цветов</em></h2>
+          <p class="card-desc">Петя — Цветочный Король. Лепестки и купюры падают с неба, кнопка «MAKE IT RAIN» и торт из цветов.</p>
+        </div>
+        <div>
+          <div class="card-foot"><span class="tag hot">interactive</span><span class="tag">petals</span><span class="tag">money</span></div>
+          <div class="card-cta">открыть</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="person nastya" aria-label="Варианты для Насти">
+    <div class="person-head">
+      <img class="avatar" src="assets/nastya.jpg" alt="Настя" />
+      <div>
+        <div class="person-title">Для <span>Насти</span></div>
+        <div class="person-sub">пилатес · стретчинг · матча · дорогие машины · 2 вселенные</div>
+      </div>
+      <div class="rule"></div>
+    </div>
+    <div class="grid">
+      <a class="card n1" href="nastya/golden-hour-drive/" data-k="4">
+        <div class="card-emoji" aria-hidden="true">🚗</div>
+        <div>
+          <div class="card-num">НАСТЯ · <b>04</b> · DRIVE</div>
+          <h2 class="card-title">Golden Hour <em>Drive</em></h2>
+          <p class="card-desc">Кино-поездка на закате. Скролл = газ: спидометр, дорога, матча в подстаканнике и фейерверк на финише.</p>
+        </div>
+        <div>
+          <div class="card-foot"><span class="tag hot">parallax</span><span class="tag">speedometer</span><span class="tag">sunset</span></div>
+          <div class="card-cta">открыть</div>
+        </div>
+      </a>
+      <a class="card n2" href="nastya/pilates-flow/" data-k="5">
+        <div class="card-emoji" aria-hidden="true">🤸</div>
+        <div>
+          <div class="card-num">НАСТЯ · <b>05</b> · FLOW</div>
+          <h2 class="card-title">Pilates <em>Flow</em></h2>
+          <p class="card-desc">Мягкий wellness-ритуал: пилатес-реформер, поток стретчинга, наливается матча и нежное «вдох-выдох».</p>
+        </div>
+        <div>
+          <div class="card-foot"><span class="tag hot">SVG</span><span class="tag">matcha</span><span class="tag">pastel</span></div>
+          <div class="card-cta">открыть</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div>// сделано с <span class="heart">♥</span> · с днём рождения, Петя и Настя</div>
+    <div style="opacity:.55">vanilla HTML · GSAP · canvas · zero build · zero tracking</div>
+  </footer>
+</main>
+
+<script>
+  // плавающие эмодзи фон
+  (function () {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var emojis = ['🎂','✨','🎉','🌸','💸','✈️','🍵','🚗','💆','🤸','🥐','🏮'];
+    var n = window.innerWidth < 600 ? 10 : 18;
+    for (var i = 0; i < n; i++) {
+      var e = document.createElement('div');
+      e.className = 'float';
+      e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      e.style.left = (Math.random() * 100) + 'vw';
+      e.style.fontSize = (13 + Math.random() * 20) + 'px';
+      var dur = 20 + Math.random() * 22;
+      e.style.animationDuration = dur + 's';
+      e.style.animationDelay = (-Math.random() * dur) + 's';
+      document.body.appendChild(e);
+    }
+  })();
+
+  // клавиши 1–5 — быстрый переход
+  document.addEventListener('keydown', function (e) {
+    if (/^[1-5]$/.test(e.key)) {
+      var card = document.querySelector('[data-k="' + e.key + '"]');
+      if (card) { card.style.outline = '2px solid #f5c451'; setTimeout(function(){ location.href = card.getAttribute('href'); }, 160); }
+    }
+  });
+
+  // подпись в консоли
+  console.log(
+    '%c🎂 ПЕТЯ & НАСТЯ %c\n' +
+    '%cДва именинника, один день. Открой любой вариант — все они про вас.\n   С Днём Рождения!',
+    'background: linear-gradient(90deg,#f5c451,#ff6f9c); color:#000; font: 700 18px Space Grotesk; padding: 10px 14px; border-radius: 6px;',
+    '',
+    'color:#9a9ab2; font: 12px JetBrains Mono; line-height: 1.6;'
+  );
+</script>
+</body>
+</html>
